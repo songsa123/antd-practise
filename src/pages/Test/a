@@ -1,0 +1,30 @@
+  <Form >
+                    <Form.Item label="编号"labelCol={{ span: 5 }} wrapperCol={{ span: 5 }}>
+                        {getFieldDecorator('num', {
+                            rules: [
+                                {
+                                    required: false,
+                                },
+                            ],
+                        })(<p></p>)}
+                    </Form.Item>
+                    <Form.Item label="报 告 人"labelCol={{ span: 5 }} wrapperCol={{ span: 15 }}>
+                        {getFieldDecorator('reportPerson', {
+                            rules: [
+                                {
+                                    required: false,
+                                },
+                            ],
+                        })(<p>IT运维组</p>)}
+                    </Form.Item>
+                    <Form.Item label="报告日期"labelCol={{ span: 5 }} wrapperCol={{ span: 15 }}>
+                        {getFieldDecorator('reportData', {
+                            rules: [
+                                {
+                                    required: false,
+                                },
+                            ],
+                        })(<p></p> )}
+                    </Form.Item>
+                </Form>
+               
