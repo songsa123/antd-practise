@@ -98,9 +98,34 @@ export default [
             component: './Test/Daping',
           },
           {
+            path: '/test/canvas',
+            name: 'Canvas',
+            component: './Test/Canvas',
+          },
+          {
             component: '404',
           },
         ],
+      },
+      {
+        path: '/practise',
+        name: 'practise',
+        icon: 'android',
+        routes:[
+          {
+            path: '/practise/tab',
+            name: 'tab',
+            component: './Practise/Tab',
+          },
+          {
+            path: '/practise/tab2',
+            name: 'tab2',
+            component: './Practise/Tab2',
+          },
+          {
+            component: '404',
+          },
+        ]
       },
       // user
       {

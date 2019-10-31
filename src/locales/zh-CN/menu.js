@@ -56,4 +56,10 @@ export default {
   'menu.test.pages.page1': '子路由1',
   'menu.test.pages.page2': '子路由2',
   'menu.test.Daping': '大屏展示',
+  'menu.test.Canvas': 'canvas展示',
+  'menu.practise': '练习',
+  'menu.practise.tab': '表格1',
+  'menu.practise.tab2': '表格2',
+
+
 };

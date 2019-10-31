@@ -8,6 +8,7 @@ import lbx from './picture/lbx.png';
 import jt from './picture/jt.png';
 import map from './picture/map.png';
 import head from './picture/head.jpg';
+import ReactResizeDetector from 'react-resize-detector';
 
 import $ from 'jquery';
 // 引入 ECharts 主模块
@@ -26,6 +27,7 @@ class Daping extends Component {
     this.state = {
       currentdate: null,
       date: 'week',
+      isFullScreen: false
     };
   }
   componentDidMount() {
@@ -39,6 +41,7 @@ class Daping extends Component {
     // this.tt();
     this.addUser();
     this.consumeRecord();
+    this.watchFullScreen()
   }
   getNowFormatDate() {
     var date = new Date();
@@ -66,7 +69,7 @@ class Daping extends Component {
       url: 'http://pv.sohu.com/cityjson?ie=utf-8',
       dataType: 'script',
       async: false,
-      success: function() {
+      success: function () {
         //console.log(returnCitySN);
         city = returnCitySN.cname;
         city = '杭州市';
@@ -80,17 +83,17 @@ class Daping extends Component {
           url: url,
           dataType: 'json',
           async: false,
-          success: function(data) {
+          success: function (data) {
             var todayWeather = data.data.forecast[0];
             $('#cl').html(
               '城市:' +
-                city +
-                '&nbsp;&nbsp;' +
-                '日期:' +
-                todayWeather.date +
-                '&nbsp;&nbsp;' +
-                '温度:' +
-                todayWeather.high
+              city +
+              '&nbsp;&nbsp;' +
+              '日期:' +
+              todayWeather.date +
+              '&nbsp;&nbsp;' +
+              '温度:' +
+              todayWeather.high
             );
             console.log(todayWeather);
           },
@@ -156,7 +159,7 @@ class Daping extends Component {
               name: '男消费',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return v1 + '\n' + '占比' + Math.round((v1 / v3) * 100) + '%' + '\n' + '男消费';
                   },
                   textStyle: {
@@ -171,7 +174,7 @@ class Daping extends Component {
               name: '女消费',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return '占比' + Math.round((v1 / v3) * 100) + '%';
                   },
                   // textStyle: {
@@ -212,7 +215,7 @@ class Daping extends Component {
               name: '女消费',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return v2 + '\n' + '占比' + Math.round((v2 / v3) * 100) + '%' + '\n' + '女消费';
                   },
                   textStyle: {
@@ -227,7 +230,7 @@ class Daping extends Component {
               name: '男消费',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return '占比' + Math.round((v2 / v3) * 100) + '%';
                   },
                   textStyle: {
@@ -250,7 +253,7 @@ class Daping extends Component {
       ],
     };
 
-    setTimeout(function() {
+    setTimeout(function () {
       myChart1.setOption(option1);
       myChart2.setOption(option2);
       myChart3.setOption(option3);
@@ -397,10 +400,10 @@ class Daping extends Component {
       ],
     };
     myChart.setOption(option);
-    $(document).ready(function() {
+    $(document).ready(function () {
       myChart.resize();
     });
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
       myChart.resize();
     });
   }
@@ -474,7 +477,7 @@ class Daping extends Component {
               name: '老会员',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return (
                       v1 + '\n' + '占比' + Math.round((v1 / v0) * 100) + '%' + '\n' + '新增会员'
                     );
@@ -530,7 +533,7 @@ class Daping extends Component {
               name: '总领卡会员',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return (
                       v2 + '\n' + '占比' + Math.round((v2 / v0) * 100) + '%' + '\n' + '新增领卡会员'
                     );
@@ -586,7 +589,7 @@ class Daping extends Component {
               name: '男消费',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return v3 + '\n' + '占比' + Math.round((v2 / v0) * 100) + '%' + '\n' + '女消费';
                   },
                   textStyle: {
@@ -608,7 +611,7 @@ class Daping extends Component {
         },
       ],
     };
-    setTimeout(function() {
+    setTimeout(function () {
       myChart6.setOption(option6);
       myChart7.setOption(option7);
       myChart8.setOption(option8);
@@ -651,7 +654,7 @@ class Daping extends Component {
               name: '老会员',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return (
                       v1 + '\n' + '占比' + Math.round((v1 / v0) * 100) + '%' + '\n' + '新增会员'
                     );
@@ -707,7 +710,7 @@ class Daping extends Component {
               name: '总领卡会员',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return (
                       v2 + '\n' + '占比' + Math.round((v2 / v0) * 100) + '%' + '\n' + '新增领卡会员'
                     );
@@ -763,7 +766,7 @@ class Daping extends Component {
               name: '男消费',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return v3 + '\n' + '占比' + Math.round((v2 / v0) * 100) + '%' + '\n' + '女消费';
                   },
                   textStyle: {
@@ -785,7 +788,7 @@ class Daping extends Component {
         },
       ],
     };
-    setTimeout(function() {
+    setTimeout(function () {
       myChart6.setOption(option6);
       myChart7.setOption(option7);
       myChart8.setOption(option8);
@@ -828,7 +831,7 @@ class Daping extends Component {
               name: '老会员',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return (
                       v1 + '\n' + '占比' + Math.round((v1 / v0) * 100) + '%' + '\n' + '新增会员'
                     );
@@ -884,7 +887,7 @@ class Daping extends Component {
               name: '总领卡会员',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return (
                       v2 + '\n' + '占比' + Math.round((v2 / v0) * 100) + '%' + '\n' + '新增领卡会员'
                     );
@@ -940,7 +943,7 @@ class Daping extends Component {
               name: '男消费',
               label: {
                 normal: {
-                  formatter: function(params) {
+                  formatter: function (params) {
                     return v3 + '\n' + '占比' + Math.round((v2 / v0) * 100) + '%' + '\n' + '女消费';
                   },
                   textStyle: {
@@ -962,7 +965,7 @@ class Daping extends Component {
         },
       ],
     };
-    setTimeout(function() {
+    setTimeout(function () {
       myChart6.setOption(option6);
       myChart7.setOption(option7);
       myChart8.setOption(option8);
@@ -981,7 +984,7 @@ class Daping extends Component {
     $('#members').append(html2);
     var ls2 = $('#members li').length / 2 + 1;
     var a = 0;
-    var ref = setInterval(function() {
+    var ref = setInterval(function () {
       a++;
       if (a == ls2) {
         a = 1;
@@ -998,12 +1001,12 @@ class Daping extends Component {
     //触摸清空定时器
     $uList
       .hover(
-        function() {
+        function () {
           clearInterval(timer);
         },
-        function() {
+        function () {
           //离开启动定时器
-          timer = setInterval(function() {
+          timer = setInterval(function () {
             scrollList($uList);
           }, 1000);
         }
@@ -1019,7 +1022,7 @@ class Daping extends Component {
           marginTop: -scrollHeight,
         },
         1000,
-        function() {
+        function () {
           //动画结束后，将当前<ul>marginTop置为初始值0状态，再将第一个<li>拼接到末尾。
           $uList
             .css({
@@ -1038,7 +1041,7 @@ class Daping extends Component {
     $('#record').append(html);
     var ls = $('#record li').length / 2 + 1;
     var i = 0;
-    var ref = setInterval(function() {
+    var ref = setInterval(function () {
       i++;
       if (i == ls) {
         i = 1;
@@ -1055,12 +1058,12 @@ class Daping extends Component {
     //触摸清空定时器
     $uList
       .hover(
-        function() {
+        function () {
           clearInterval(timer);
         },
-        function() {
+        function () {
           //离开启动定时器
-          timer = setInterval(function() {
+          timer = setInterval(function () {
             scrollList($uList);
           }, 2000);
         }
@@ -1076,7 +1079,7 @@ class Daping extends Component {
           marginTop: -scrollHeight,
         },
         600,
-        function() {
+        function () {
           //动画结束后，将当前<ul>marginTop置为初始值0状态，再将第一个<li>拼接到末尾。
           $uList
             .css({
@@ -1088,15 +1091,73 @@ class Daping extends Component {
       );
     }
   }
+  // 
+  fullScreen = () => {
+    console.log('fullscreen:', this.state.isFullScreen);
+    if (!this.state.isFullScreen) {
+      this.requestFullScreen();
+    } else {
+      this.exitFullscreen();
+    }
+  };
+
+  //进入全屏
+  requestFullScreen = () => {
+    console.log('requestFullScreen')
+    var de = document.getElementById('aa')
+    if (de.requestFullscreen) {
+      de.requestFullscreen();
+    } else if (de.mozRequestFullScreen) {
+      de.mozRequestFullScreen();
+    } else if (de.webkitRequestFullScreen) {
+      de.webkitRequestFullScreen();
+    }
+  };
+
+  //退出全屏
+  exitFullscreen = () => {
+    console.log('exitFullscreen')
+    var de = document;
+    if (de.exitFullscreen) {
+      de.exitFullscreen();
+    } else if (de.mozCancelFullScreen) {
+      de.mozCancelFullScreen();
+    } else if (de.webkitCancelFullScreen) {
+      de.webkitCancelFullScreen();
+    }
+  };
+
+  //监听fullscreenchange事件
+  watchFullScreen = () => {
+    const _self = this;
+    const aa = document
+    aa.addEventListener(
+      "webkitfullscreenchange",
+      function () {
+        _self.setState({
+          isFullScreen: aa.webkitIsFullScreen
+        });
+      },
+      false
+    );
+  };
+
   render() {
     const { currentdate, date } = this.state;
     return (
-      <div className={style.bg}>
+      <div className={style.bg} id='aa'>
         {/* <div className={style.loading}>
                     <div className={style.loadbox}> <img src={loading} />
                         页面加载中...
                     </div>
                 </div> */}
+        <div>
+          <a
+            onClick={this.fullScreen}
+            style={{ margin: "0 6px 0 6px" }}
+          >全屏</a>
+        </div>
+
         <div className={style.head}>
           <h1>
             <img src={logo} />
@@ -1149,10 +1210,17 @@ class Daping extends Component {
               </div>
               <div className={style.boxall} style={{ height: 160 }}>
                 <div className={style.alltitle}>消费占比</div>
-                <div className={style.sy} id="echarts1" />
-                <div className={style.sy} id="echarts2" />
+                <div className={style.sy} id="echarts1" ref='e1' />
+                <div className={style.sy} id="echarts2" ref='e2'/>
                 <div className={style.sy} id="echarts3" />
                 <div className={style.boxfoot} />
+                <ReactResizeDetector
+                  handleWidth={true}
+                  handleHeight={true}
+                  // onResize={() => {
+                  //   // this.bindReSize(this.refs.e1,this.refs.e2)
+                  // }}
+                ></ReactResizeDetector>
               </div>
               <div className={style.boxall} style={{ height: 220 }}>
                 <div className={style.alltitle}>行业区分比例</div>

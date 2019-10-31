@@ -33,6 +33,8 @@ function getList(req, res, u) {
   const params = parse(url, true).query;
   let dataSource = tableListData;
   // console.log(dataSource,21)
+  console.log(params,88888888)
+
   if (params.sorter) {
     const s = params.sorter.split('_');
     dataSource = dataSource.sort((prev, next) => {

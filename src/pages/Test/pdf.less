@@ -23,3 +23,50 @@
   height: 600px !important;
   overflow: auto;
 }
+// 线条
+.line{
+  line-height: 20px;
+  height: 20px;
+  position: relative;
+  .left{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #f00;
+    text-align: center;
+  }
+  .right{
+    display: inline-block;
+    background: #ff0;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+  }
+  .aa{
+    display: inline-block;
+    width: 220px;
+    margin:2px 4px;
+    border-bottom: 2px solid #00f;
+    vertical-align: middle;
+  }
+  img{
+    position: absolute;
+    left:20px;
+    z-index: 1;
+    opacity: 0.4;
+	-webkit-animation:mymove 3s infinite; /* Safari and Chrome */
+  animation: mymove 3s infinite linear;
+  }
+}
+@keyframes mymove
+{
+	from {left:0px;}
+	to {left:150px;}
+}
+
+@-webkit-keyframes mymove /* Safari and Chrome */
+{
+	from {left:0px;}
+	to {left:150px;}
+}
+
